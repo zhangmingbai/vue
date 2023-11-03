@@ -13,12 +13,18 @@ const router = createRouter({
           path: "/index",
           name: "index",
           component: () => import("../components/home/IndexComponent.vue")
+        },
+        {
+          path: "/liuyan",
+          name: "liuyan",
+          component: () => import("../components/home/LiuyanComponent.vue")
+        },
+        {
+          path: "/wenzhang",
+          name: "wenzhang",
+          component: () => import("../components/home/WenzhangComponent.vue")
         }
       ]
-    },
-    {
-      path: "/index", // 这里是全局前置守卫的路径配置
-      redirect: "/" // 这里是重定向的路径配置
     }
   ]
 })

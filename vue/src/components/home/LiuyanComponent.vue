@@ -1,11 +1,8 @@
-<script>
-export default {
-  name: "messageComponent"
-}
+<script setup>
 </script>
 
 <template>
-
+  <div>222222</div>
 </template>
 
 <style scoped>
