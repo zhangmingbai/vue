@@ -31,10 +31,6 @@ const links = ref([
         </li>
       </ul>
     </nav>
-    <div class="embellish">
-      <a class="rocket"></a>
-      <div class="aside"></div>
-    </div>
     <section>
       <router-view/>
     </section>
@@ -66,12 +62,7 @@ header { width: 100%; height: 270px; background: url(../assets/img/top.jpg) cent
 .nav ul {margin: 0 auto; width: 600px; height: 50px; font-size: 16px; }
 .nav ul li { float: left; margin: -8px 15px 0 25px; padding: 2px 0; height: 50px; line-height: 50px; }
 .nav ul li a { color: #fff; padding: 0 15px; }
-.nav ul .current { background-color: #538c09; border-radius: 0 30px; }
 .nav ul li a:hover { background-color: #538c09; border-radius: 0 30px; transition: background-color 0.3s linear 0s; }
-/*修饰*/
-.leaf { background-color: #538c09; border-radius: 0 30px; padding: 10px 20px; }
-.embellish .rocket { display: none; cursor: url(../assets/img/a2.png),pointer; position: fixed; bottom: 40px; right: 10px; width: 71px; height: 135px; transition: all 0.6s; background: url(../assets/img/e1.png); }
-.embellish .rocket:hover { transition: all 0.6s; background: url(../assets/img/e2.png); }
 section {
   background: rgba(255,255,255,0.7);
   margin: 35px auto;
