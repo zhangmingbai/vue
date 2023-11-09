@@ -10,7 +10,7 @@ const router = createRouter({
       component: HomeView,
       children: [
         {
-          path: "/index",
+          path: "",
           name: "index",
           component: () => import("../components/home/IndexComponent.vue")
         },
@@ -25,6 +25,11 @@ const router = createRouter({
           component: () => import("../components/home/WenzhangComponent.vue")
         }
       ]
+    },
+    {
+      path: '/background',
+      name: 'background',
+      component: () => import("../views/background.vue")
     }
   ]
 })
