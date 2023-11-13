@@ -3,11 +3,10 @@ import { ref, onMounted, onUnmounted } from 'vue';
 
 let index = ref(0);
 let timer = null;
-
 const start = () => {
   timer = setInterval(() => {
     index.value = (index.value + 1) % 4; // 这里的 4 是图片的数量
-  }, 250000); // 3000 是轮播的间隔时间，单位是毫秒
+  }, 2500); // 2500 是轮播的间隔时间，单位是毫秒
 };
 
 const stop = () => {
@@ -52,8 +51,8 @@ onUnmounted(stop);
           </div>
         </div>
       </el-aside>
-      <el-container style="width: 740px;">
-        <el-header style=" height: 315px;padding-right: 10px">
+      <el-container style="width: 740px">
+        <el-header style="height: 315px; padding: 10px">
           <div class="banner" @mouseover="stop" @mouseout="start">
             <div>
               <a class="a-img-ban" :class="{ 'img-ban-curr': index === 0 }"><img class="img-ban" src="../../assets/img/1.jpeg" alt=""></a>
@@ -80,6 +79,14 @@ onUnmounted(stop);
 </template>
 
 <style scoped>
+.common-layout {
+  background: rgba(255,255,255,0.7);
+  margin: 35px auto;
+  padding: 15px;
+  width: 1050px;
+  border-radius: 15px;
+  z-index: 1;
+}
 ul,li { list-style: none; }
 img,span,a { display: inline-block; }
 a{ text-decoration: none; color: #333; cursor: url(../../assets/img/a2.png),pointer;}
@@ -136,7 +143,9 @@ p {margin-top: 8px;text-align: center;}
   width: 101%;
   height: 101%;
   background-color: rgba(85,150,100,0.5);
-  border-radius: 5px; }
+  border-radius: 5px;
+}
 .banner ul li.curr { background-color: #79d48b; }
 .banner ul li img { width: 100%; height: 100%; border-radius: 5px; }
+
 </style>

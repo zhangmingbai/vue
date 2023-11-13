@@ -64,14 +64,6 @@ header { width: 100%; height: 250px; background: url(../assets/img/top.jpg) cent
 .nav ul li { float: left; margin: -8px 15px 0 25px; padding: 2px 0; height: 50px; line-height: 50px; }
 .nav ul li a { color: #fff; padding: 0 15px; }
 .nav ul li a:hover { background-color: #538c09; border-radius: 0 30px; transition: background-color 0.3s linear 0s; }
-section {
-  background: rgba(255,255,255,0.7);
-  margin: 35px auto;
-  padding: 15px;
-  width: 1050px;
-  overflow: hidden;
-  border-radius: 15px;
-}
 /*底部*/
 footer { overflow: hidden; margin-top: 66px; width: 100%; height: 80px; color: #222; background: #226039; font-size: 14px; line-height: 80px; text-align: center; }
 </style>
