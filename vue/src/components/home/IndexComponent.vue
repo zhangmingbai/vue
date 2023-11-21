@@ -89,7 +89,6 @@ onUnmounted(stop);
 }
 ul,li { list-style: none; }
 img,span,a { display: inline-block; }
-a{ text-decoration: none; color: #333; cursor: url(../../assets/img/a2.png),pointer;}
 .r{ float: right;}
 .fa {position: absolute; margin-top: 10px;}
 .fa-circle {position: absolute; margin-top: 12px; font-size: 10px}

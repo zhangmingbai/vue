@@ -5,7 +5,7 @@ const links = ref([
   { href: '/wenzhang', label: '文章' },
   { href: '/liuyan', label: '留言板' },
   { href: '/background', label: '后台'},
-  { href: '', label: '登录' }
+  { href: '/welcome', label: '登录' }
 ])
 </script>
 <template>
@@ -46,7 +46,6 @@ const links = ref([
 .body {color: #333;background: #559664;background-size: 100%;}
 ul,li{ list-style: none; }
 img,span,a,dt{ display: inline-block; }
-a{ text-decoration: none; color: #333; cursor: url(../assets/img/a2.png),pointer;}
 h1,h2,h3{ font-size: 16px; }
 .l{ float: left; }
 .r{ float: right; }
