@@ -138,7 +138,7 @@ const register = () => {
                 code: form.code
             }, () => {
                 ElMessage.success('注册成功，欢迎加入我们')
-                router.push("/")
+                router.push("/welcome")
             })
         } else {
             ElMessage.warning('请完整填写注册表单内容！')
@@ -151,7 +151,7 @@ const validateEmail = () => {
     get(`/api/auth/ask-code?email=${form.email}&type=register`, () => {
         ElMessage.success(`验证码已发送到邮箱: ${form.email}，请注意查收`)
         setInterval(() => coldTime.value--, 1000)
-    }, undefined, (message) => {
+    }, undefined,(message) => {
         ElMessage.warning(message)
         coldTime.value = 0
     })

@@ -160,7 +160,7 @@ const doReset = () => {
                 password: form.password
             }, () => {
                 ElMessage.success('密码重置成功，请重新登录')
-                router.push('/')
+                router.push('/welcome')
             })
         }
     })
