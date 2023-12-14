@@ -1,10 +1,10 @@
 <script setup>
 import { ref } from 'vue'
 const links = ref([
-  { href: '/', label: '首页' },
-  { href: '/wenzhang', label: '文章' },
-  { href: '/liuyan', label: '留言板' },
-  { href: '/background', label: '后台'},
+  { href: '/index', label: '首页' },
+  { href: '/index/wenzhang', label: '文章' },
+  { href: '/index/liuyan', label: '留言板' },
+  { href: '/', label: '后台'},
   { href: '/welcome', label: '登录' }
 ])
 </script>
@@ -43,7 +43,13 @@ const links = ref([
 </template>
 
 <style scoped>
-.body {color: #333;background: #559664;background-size: 100%;}
+.body {
+  color: #333;
+  background: #559664;
+  background-size: 100%;
+  width: 100%;
+  margin: 0 auto;
+}
 ul,li{ list-style: none; }
 img,span,a,dt{ display: inline-block; }
 h1,h2,h3{ font-size: 16px; }

@@ -6,7 +6,7 @@ let timer = null;
 const start = () => {
   timer = setInterval(() => {
     index.value = (index.value + 1) % 4; // 这里的 4 是图片的数量
-  }, 2500); // 2500 是轮播的间隔时间，单位是毫秒
+  }, 1500); // 1500 是轮播的间隔时间，单位是毫秒
 };
 
 const stop = () => {

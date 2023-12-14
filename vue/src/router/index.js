@@ -7,8 +7,8 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
-      name: 'home',
+      path: '/index',
+      name: 'homeView',
       component: HomeView,
       children: [
         {
@@ -17,21 +17,28 @@ const router = createRouter({
           component: () => import("@/components/home/IndexComponent.vue")
         },
         {
-          path: "/liuyan",
+          path: "liuyan",
           name: "liuyan",
           component: () => import("@/components/home/LiuyanComponent.vue")
         },
         {
-          path: "/wenzhang",
+          path: "wenzhang",
           name: "wenzhang",
           component: () => import("@/components/home/WenzhangComponent.vue")
         }
       ]
     },
     {
-      path: '/background',
-      name: 'background',
-      component: () => import("@/views/background.vue")
+      path: '/',
+      name: 'manager',
+      component: () => import("@/views/Manager.vue"),
+      children: [
+        { path: '403', name: 'NoAuth', meta: { name: '无权限' }, component: () => import('../components/manager/403.vue') },
+        { path: 'home', name: 'Home', meta: { name: '系统首页' }, component: () => import('../components/manager/Home.vue') },
+        { path: 'user', name: 'Admin', meta: { name: '用户信息' }, component: () => import('../components/manager/User.vue') },
+        { path: 'UserPerson', name: 'UserPerson', meta: { name: '个人信息' }, component: () => import('../components/manager/UserPerson.vue') },
+        { path: 'notice', name: 'Notice', meta: { name: '公告信息' }, component: () => import('../components/manager/Notice.vue') },
+      ]
     },
     {
       path: '/welcome',
@@ -57,15 +64,14 @@ const router = createRouter({
     }
   ]
 })
-
 router.beforeEach((to, from, next) => {
   const isUnauthorized = unauthorized()
-  if(to.name.startsWith('welcome-') && !isUnauthorized) {
-    ElMessage.error("你已登录，不需在登录了")
-    next('/')
-  } else if(to.fullPath.startsWith('/background') && isUnauthorized) {
-    ElMessage.error("请先登录，再进后台")
-    next('/')
+  if (to.name && to.name.startsWith('welcome') && !isUnauthorized) {
+    ElMessage.warning('您已经登录，无法访问登录页面')
+    next('/index')
+  } else if (to.name && to.name.startsWith('manager') && isUnauthorized) {
+    ElMessage.warning('您还没有登录，请先登录')
+    next('/welcome')
   } else {
     next()
   }
