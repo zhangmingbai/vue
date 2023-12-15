@@ -5,7 +5,7 @@
         <div style="margin: 15px; text-align: center">
           <el-upload
               class="avatar-uploader"
-              :action="$baseUrl + '/files/upload'"
+              :action="'http://localhost:8080' + '/files/upload'"
               :show-file-list="false"
               :on-success="handleAvatarSuccess"
           >
@@ -34,6 +34,7 @@
 </template>
 
 <script>
+import {ElMessage} from "element-plus";
 export default {
   name: "UserPerson",
   data() {
@@ -47,24 +48,27 @@ export default {
   methods: {
     update() {
       // 保存当前的用户信息到数据库
-      this.$request.put('/admin/update', this.user).then(res => {
-        if (res.code === '200') {
+      this.$request.put('/user/update', this.user).then(res => {
+        if (res.code === 200) {
           // 成功更新
-          this.$message.success('保存成功')
+          ElMessage.success('保存成功')
 
           // 更新浏览器缓存里的用户信息
-          localStorage.setItem('xm-user', JSON.stringify(this.user))
+          if (localStorage.getItem('authorize') !== null)
+            localStorage.setItem('authorize', JSON.stringify(this.user))
+          else
+            sessionStorage.setItem('authorize', JSON.stringify(this.user))
 
           // 触发父级的数据更新
           this.$emit('update:user')
         } else {
-          this.$message.error(res.msg)
+          ElMessage.error(res.msg)
         }
       })
     },
-    handleAvatarSuccess(response, file, fileList) {
+    handleAvatarSuccess(response) {
       // 把user的头像属性换成上传的图片的链接
-      this.$set(this.user, 'avatar', response.data)
+      this.user.avatar = response.data
     },
   }
 }

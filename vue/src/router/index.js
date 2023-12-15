@@ -33,9 +33,8 @@ const router = createRouter({
       name: 'manager',
       component: () => import("@/views/Manager.vue"),
       children: [
-        { path: '403', name: 'NoAuth', meta: { name: '无权限' }, component: () => import('../components/manager/403.vue') },
         { path: 'home', name: 'Home', meta: { name: '系统首页' }, component: () => import('../components/manager/Home.vue') },
-        { path: 'user', name: 'Admin', meta: { name: '用户信息' }, component: () => import('../components/manager/User.vue') },
+        { path: 'user', name: 'User', meta: { name: '用户信息' }, component: () => import('../components/manager/User.vue') },
         { path: 'UserPerson', name: 'UserPerson', meta: { name: '个人信息' }, component: () => import('../components/manager/UserPerson.vue') },
         { path: 'notice', name: 'Notice', meta: { name: '公告信息' }, component: () => import('../components/manager/Notice.vue') },
       ]
@@ -64,17 +63,17 @@ const router = createRouter({
     }
   ]
 })
-router.beforeEach((to, from, next) => {
-  const isUnauthorized = unauthorized()
-  if (to.name && to.name.startsWith('welcome') && !isUnauthorized) {
-    ElMessage.warning('您已经登录，无法访问登录页面')
-    next('/index')
-  } else if (to.name && to.name.startsWith('manager') && isUnauthorized) {
-    ElMessage.warning('您还没有登录，请先登录')
-    next('/welcome')
-  } else {
-    next()
-  }
-})
+// router.beforeEach((to, from, next) => {
+//   const isUnauthorized = unauthorized()
+//   if (to.name && to.name.startsWith('welcome') && !isUnauthorized) {
+//     ElMessage.warning('您已经登录，无法访问登录页面')
+//     next('/index')
+//   } else if (to.name && to.name.startsWith('manager') && isUnauthorized) {
+//     ElMessage.warning('您还没有登录，请先登录')
+//     next('/welcome')
+//   } else {
+//     next()
+//   }
+// })
 
 export default router

@@ -17,8 +17,11 @@
       <div class="manager-header-right">
         <el-dropdown placement="bottom">
           <div class="avatar" slot="reference">
-            <img :src="user.avatar || 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'" alt=""/>
+            <el-avatar :src="user.avatar" />
             <div>{{ user.name || '管理员' }}</div>
+            <el-icon>
+              <CaretBottom />
+            </el-icon>
           </div>
           <template #dropdown>
             <el-dropdown-menu>
@@ -64,25 +67,36 @@
   </div>
 </template>
 
-<script setup>
-import {House} from '@element-plus/icons-vue';
-import { ref} from 'vue';
+<script>
+import {House,CaretBottom} from '@element-plus/icons-vue';
+import {ElMessage} from "element-plus";
 import {logout} from "@/net";
 import router from "@/router";
-
-const user = ref(JSON.parse(localStorage.getItem('authorize') || sessionStorage.getItem('authorize')));
-
-const updateUser = () => {
-  user._value = JSON.parse(localStorage.getItem('authorize') || sessionStorage.getItem('authorize'));
-};
-
-const goToPerson = () => {
-    router.push('/UserPerson');
-};
-
-const userLogout = () => {
-  logout(() => router.push('/welcome')) ;
-};
+export default {
+  name: "Manager",
+  data() {
+    return {
+      user: JSON.parse(localStorage.getItem('authorize') || sessionStorage.getItem('authorize')),
+    }
+  },
+  created() {
+    if (this.user.role !== 'admin') {
+       ElMessage.error('你没有权限访问该页面')
+       router.push('/index')
+    }
+  },
+  methods: {
+    updateUser() {
+      this.user = JSON.parse(localStorage.getItem('authorize') || sessionStorage.getItem('authorize'))   // 重新获取下用户的最新信息
+    },
+    goToPerson() {
+        router.push('/UserPerson')
+    },
+    userLogout() {
+      logout(() => router.push('/welcome')) ;
+    }
+  }
+}
 </script>
 
 <style scoped>

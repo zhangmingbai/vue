@@ -35,6 +35,7 @@ function takeAccessToken() {  // 获取token
 
 function storeAccessToken(remember, data){  // 存储token
     const authObj = {  // 创建对象
+        id: data.id,  // 存储用户id
         token: data.token,    // 存储token
         expire: data.expire,  // 存储token过期时间
         username: data.username,  // 存储用户名

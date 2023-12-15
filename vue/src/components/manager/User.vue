@@ -21,17 +21,19 @@
         <el-table-column prop="email" label="邮箱"></el-table-column>
         <el-table-column label="头像">
           <template v-slot="scope">
-            <div style="display: flex; align-items: center">
-              <el-image style="width: 40px; height: 40px; border-radius: 50%" v-if="scope.row.avatar"
-                        :src="scope.row.avatar" :preview-src-list="[scope.row.avatar]"></el-image>
+            <div class="demo-image__preview">
+              <el-image style="width: 40px; height: 40px; border-radius: 50%"
+                        v-if="scope.row.avatar"
+                        :src="scope.row.avatar"
+                        :preview-src-list="[scope.row.avatar]"></el-image>
             </div>
           </template>
         </el-table-column>
         <el-table-column prop="role" label="角色"></el-table-column>
         <el-table-column label="操作" width="180">
           <template v-slot="scope">
-            <el-button size="mini" type="primary" plain @click="handleEdit(scope.row)">编辑</el-button>
-            <el-button size="mini" type="danger" plain @click="del(scope.row.id)">删除</el-button>
+            <el-button size="small" type="primary" plain @click="handleEdit(scope.row)">编辑</el-button>
+            <el-button size="small" type="danger" plain @click="del(scope.row.id)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -50,7 +52,7 @@
     </div>
 
 
-    <el-dialog title="管理员" v-model="fromVisible" width="40%" :close-on-click-modal="false" destroy-on-close>
+    <el-dialog title="用户" v-model="fromVisible" width="40%" :close-on-click-modal="false" destroy-on-close>
       <el-form :model="form" label-width="100px" style="padding-right: 50px" :rules="rules" ref="formRef">
         <el-form-item label="用户名" prop="username">
           <el-input v-model="form.username" placeholder="用户名"></el-input>
@@ -67,7 +69,7 @@
         <el-form-item label="头像">
           <el-upload
               class="avatar-uploader"
-              :action="$baseUrl + '/files/upload'"
+              :action="'http://localhost:8080' + '/files/upload'"
               :headers="{ token: user.token }"
               list-type="picture"
               :on-success="handleAvatarSuccess"
@@ -88,6 +90,8 @@
 </template>
 
 <script>
+import {ElMessage} from "element-plus";
+
 export default {
   name: "User",
   data() {
@@ -128,12 +132,12 @@ export default {
             method: this.form.id ? 'PUT' : 'POST',
             data: this.form
           }).then(res => {
-            if (res.code === '200') {  // 表示成功保存
-              this.$message.success('保存成功')
+            if (res.code === 200) {  // 表示成功保存
+              ElMessage.success('保存成功')
               this.load(1)
               this.fromVisible = false
             } else {
-              this.$message.error(res.msg)  // 弹出错误的信息
+              ElMessage.error(res.msg)  // 弹出错误的信息
             }
           })
         }
@@ -142,11 +146,11 @@ export default {
     del(id) {   // 单个删除
       this.$confirm('您确定删除吗？', '确认删除', {type: "warning"}).then(response => {
         this.$request.delete('/user/delete/' + id).then(res => {
-          if (res.code === '200') {   // 表示操作成功
-            this.$message.success('操作成功')
+          if (res.code === 200) {   // 表示操作成功
+            ElMessage.success('操作成功')
             this.load(1)
           } else {
-            this.$message.error(res.msg)  // 弹出错误的信息
+            ElMessage.error(res.msg)  // 弹出错误的信息
           }
         })
       }).catch(() => {
@@ -157,16 +161,16 @@ export default {
     },
     delBatch() {   // 批量删除
       if (!this.ids.length) {
-        this.$message.warning('请选择数据')
+        ElMessage.warning('请选择数据')
         return
       }
       this.$confirm('您确定批量删除这些数据吗？', '确认删除', {type: "warning"}).then(response => {
         this.$request.delete('/user/delete/batch', {data: this.ids}).then(res => {
-          if (res.code === '200') {   // 表示操作成功
-            this.$message.success('操作成功')
+          if (res.code === 200) {   // 表示操作成功
+            ElMessage.success('操作成功')
             this.load(1)
           } else {
-            this.$message.error(res.msg)  // 弹出错误的信息
+            ElMessage.error(res.msg)  // 弹出错误的信息
           }
         })
       }).catch(() => {
@@ -192,7 +196,7 @@ export default {
     handleCurrentChange(pageNum) {
       this.load(pageNum)
     },
-    handleAvatarSuccess(response, file) {
+    handleAvatarSuccess(response) {
       // 把头像属性换成上传的图片的链接
       this.form.avatar = response.data
     },
@@ -201,5 +205,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>
