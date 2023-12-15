@@ -37,6 +37,7 @@ const router = createRouter({
         { path: 'user', name: 'User', meta: { name: '用户信息' }, component: () => import('../components/manager/User.vue') },
         { path: 'UserPerson', name: 'UserPerson', meta: { name: '个人信息' }, component: () => import('../components/manager/UserPerson.vue') },
         { path: 'notice', name: 'Notice', meta: { name: '公告信息' }, component: () => import('../components/manager/Notice.vue') },
+        { path: 'category', name: 'Category', meta: { name: '博客分类' }, component: () => import('../components/manager/Category.vue') },
       ]
     },
     {
