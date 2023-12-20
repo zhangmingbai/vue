@@ -1,43 +1,30 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
-import {unauthorized} from "@/net";
-import {ElMessage} from "element-plus";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/index',
+      path: '/',
       name: 'homeView',
       component: HomeView,
       children: [
-        {
-          path: "",
-          name: "index",
-          component: () => import("@/components/home/IndexComponent.vue")
-        },
-        {
-          path: "liuyan",
-          name: "liuyan",
-          component: () => import("@/components/home/LiuyanComponent.vue")
-        },
-        {
-          path: "wenzhang",
-          name: "wenzhang",
-          component: () => import("@/components/home/WenzhangComponent.vue")
-        }
+        {path: "", name: "index",meta: { name: '首页' }, component: () => import("@/components/home/IndexComponent.vue")},
+        {path: 'blog', name: 'blog',meta: { name: '博客' }, component: () => import("@/components/home/BlogComponent.vue")},
+        {path: 'blogDetail', name: 'BlogDetail', meta: { name: '博客详情' },component: () => import("@/components/home/BlogDetail.vue")},
       ]
     },
     {
-      path: '/',
+      path: '/manager',
       name: 'manager',
       component: () => import("@/views/Manager.vue"),
       children: [
-        { path: 'home', name: 'Home', meta: { name: '系统首页' }, component: () => import('../components/manager/Home.vue') },
+        { path: 'home', name: 'Home', meta: { name: '管理首页' }, component: () => import('../components/manager/Home.vue') },
         { path: 'user', name: 'User', meta: { name: '用户信息' }, component: () => import('../components/manager/User.vue') },
         { path: 'UserPerson', name: 'UserPerson', meta: { name: '个人信息' }, component: () => import('../components/manager/UserPerson.vue') },
         { path: 'notice', name: 'Notice', meta: { name: '公告信息' }, component: () => import('../components/manager/Notice.vue') },
         { path: 'category', name: 'Category', meta: { name: '博客分类' }, component: () => import('../components/manager/Category.vue') },
+        { path: 'blog', name: 'Blog', meta: { name: '博客信息' }, component: () => import('../components/manager/Blog.vue') },
       ]
     },
     {

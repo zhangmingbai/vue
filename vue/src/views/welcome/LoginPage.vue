@@ -74,7 +74,7 @@ function userLogin() {
   formRef.value.validate((isValid) => {
     if(isValid) {
       login(form.username, form.password, form.remember, () =>{
-        router.push("/index");
+        router.push("/");
       })
     }
   });

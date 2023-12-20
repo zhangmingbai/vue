@@ -5,7 +5,7 @@ import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import 'font-awesome/css/font-awesome.min.css'
 import request from "@/net/request";
-
+import 'highlight.js/styles/monokai-sublime.css'
 
 const app = createApp(App)
 

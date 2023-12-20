@@ -5,7 +5,7 @@
 
 .manager-header {
     display: flex;
-    background-color: #2c334c;
+    background-color: #559664;
 }
 
 .manager-header-left {
@@ -33,7 +33,7 @@
     flex: 1;
     width: 0;
     display: flex;
-    align-items: center
+    align-items: center;
 }
 
 .manager-header-right {
@@ -69,7 +69,7 @@
 .manager-main-left {
     width: 200px;
     min-height: calc(100vh - 60px);
-    box-shadow: 0 0 6px rgba(0, 21, 41, .35);
+    box-shadow: 0 0 6px rgb(51, 103, 63);
 }
 
 .manager-main-right {
@@ -82,7 +82,7 @@
     padding: 10px;
     background-color: #fff;
     border-radius: 5px;
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px 0 rgb(51, 103, 63);
 }
 
 .manager-main-right .operation {
@@ -90,7 +90,7 @@
     padding: 10px;
     background-color: #fff;
     border-radius: 5px;
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1)
+    box-shadow: 0 2px 5px 0 rgb(51, 103, 63)
 }
 
 .manager-main-right .table {
@@ -98,7 +98,7 @@
     padding: 15px 10px;
     background-color: #fff;
     border-radius: 5px;
-    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)
+    box-shadow: 0 2px 12px 0 rgb(51, 103, 63)
 }
 
 .manager-main-right .table .pagination {
@@ -109,18 +109,18 @@
     padding: 20px;
     background-color: #fff;
     border-radius: 5px;
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px 0 rgb(51, 103, 63);
 }
 
 /* Element plus */
 .el-menu {
     width: 200px;
     height: 100%;
-    background-color: #222b40;
+    background-color: #33673f;
 }
 
-.el-sub-menu__title {
-    color: #ccc;
+.el-sub-menu /deep/ .el-sub-menu__title {
+    color: #ccc !important;
     height: 50px;
     line-height: 50px;
 }
@@ -129,7 +129,7 @@
     color: #ccc;
     height: 50px;
     line-height: 50px;
-    background-color: #222b40 !important; /* 必须加上这个背景色，否则鼠标离开会出现白色 */
+    background-color: #1f5a37 !important; /* 必须加上这个背景色，否则鼠标离开会出现白色 */
 }
 
 .el-menu-item.is-active {
@@ -142,11 +142,11 @@
 }
 
 .el-menu .is-active {
-    color: #3399ff !important;
+    color: #538c09 !important;
 }
 
-.el-sub-menu__title:hover {
-    background-color: #222 !important;
+.el-sub-menu /deep/ .el-sub-menu__title:hover {
+    background-color: #538c09 !important;
 }
 
 .el-menu-item:not(.is-active):hover {
@@ -155,10 +155,9 @@
 }
 
 .el-menu-item:hover {
-    background-color: #222 !important;
+    background-color: #538c09 !important;
 }
-
-.el-sub-menu__icon-arrow {
+.el-sub-menu /deep/ .el-sub-menu__icon-arrow {
     margin-top: -5px;
 }
 

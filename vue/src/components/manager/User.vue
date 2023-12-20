@@ -23,6 +23,7 @@
           <template v-slot="scope">
             <div class="demo-image__preview">
               <el-image style="width: 40px; height: 40px; border-radius: 50%"
+                        preview-teleported="“true”"
                         v-if="scope.row.avatar"
                         :src="scope.row.avatar"
                         :preview-src-list="[scope.row.avatar]"></el-image>
