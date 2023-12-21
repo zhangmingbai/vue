@@ -99,7 +99,15 @@ export default {
   },
   methods: {
     setLikes() {
-      this.$request.post('/likes/set' , {fid: this.blogId, userId: this.user.id, module: '博客'}).then(res => {
+      this.$request.post('/likes/set' , {fid: this.blogId, module: '博客'}).then(res => {
+        if (res.code === 200) {
+          ElMessage.success('操作成功')
+          this.load() // 重新加载数据
+        }
+      })
+    },
+    setCollect(){
+      this.$request.post('/collect/set' , {fid: this.blogId, module: '博客'}).then(res => {
         if (res.code === 200) {
           ElMessage.success('操作成功')
           this.load() // 重新加载数据
