@@ -58,7 +58,6 @@ export default {
             localStorage.setItem('authorize', JSON.stringify(this.user))
           else
             sessionStorage.setItem('authorize', JSON.stringify(this.user))
-
           // 触发父级的数据更新
           this.$emit('update:user')
         } else {

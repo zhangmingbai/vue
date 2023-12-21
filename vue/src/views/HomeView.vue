@@ -14,7 +14,6 @@ export default {
       title: this.$route.query.title
     }
   },
-
   mounted() {
     this.loadNotice()
   },
@@ -39,7 +38,7 @@ export default {
       })
     },
     updateUser() {
-      this.user = JSON.parse(localStorage.getItem('authorize') || sessionStorage.getItem('authorize'))   // 重新获取下用户的最新信息
+      this.user = JSON.parse(localStorage.getItem('authorize') || sessionStorage.getItem('authorize')) || {}  // 重新获取下用户的最新信息
     },
     goToManager() {
       if (this.user.role !== 'admin') {
